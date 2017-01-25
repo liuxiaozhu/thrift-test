@@ -1,4 +1,4 @@
-package me.islim.thrift.demo.pool;
+package me.islim.thrift.pool;
 
 import org.apache.thrift.TProcessor;
 import org.apache.thrift.protocol.TBinaryProtocol;
@@ -43,7 +43,7 @@ public class UserServiceServer {
     }
 
     public static void main(String[] args){
-        ApplicationContext context = new ClassPathXmlApplicationContext("classpath:applicationContext-server.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("classpath:pool/applicationContext-server.xml");
         UserServiceServer userServiceServer = context.getBean(UserServiceServer.class);
         userServiceServer.start();
     }

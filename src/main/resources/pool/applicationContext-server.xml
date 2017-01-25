@@ -9,7 +9,7 @@
 
     <context:component-scan base-package="me.islim.thrift.demo.pool" />
 
-    <bean id="userServiceServer" class="me.islim.thrift.demo.pool.UserServiceServer">
+    <bean id="userServiceServer" class="me.islim.thrift.pool.UserServiceServer">
         <property name="servicePort" value="1234" />
     </bean>
 

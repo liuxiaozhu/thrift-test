@@ -1,8 +1,8 @@
-package me.islim.thrift.demo.pool.impl;
+package me.islim.thrift.pool.impl;
 
 
-import me.islim.thrift.demo.pool.ConnectionProvider;
-import me.islim.thrift.demo.pool.ThriftPoolableObjectFactory;
+import me.islim.thrift.pool.ConnectionProvider;
+import me.islim.thrift.pool.ThriftPoolableObjectFactory;
 import org.apache.commons.pool2.ObjectPool;
 import org.apache.commons.pool2.impl.GenericObjectPool;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;

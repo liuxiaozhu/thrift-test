@@ -1,4 +1,4 @@
-package me.islim.thrift.demo.pool;
+package me.islim.thrift.pool;
 
 import org.apache.thrift.TException;
 import org.apache.thrift.protocol.TBinaryProtocol;
@@ -32,7 +32,7 @@ public class UserServiceClient {
     }
 
     public static void main(String[] args) {
-        ApplicationContext context = new ClassPathXmlApplicationContext("classpath:applicationContext-client.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("classpath:pool/applicationContext-client.xml");
         UserServiceClient userServiceClient = (UserServiceClient) context.getBean(UserServiceClient.class);
         userServiceClient.start();
     }

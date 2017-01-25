@@ -1,4 +1,4 @@
-package me.islim.thrift.demo.pool;
+package me.islim.thrift.pool;
 
 
 import org.apache.thrift.transport.TSocket;

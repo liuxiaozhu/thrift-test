@@ -1,5 +1,6 @@
-package me.islim.thrift.demo.pool;
+package me.islim.thrift.pool;
 
+import me.islim.thrift.pool.impl.ConnectionProviderImpl;
 import org.apache.thrift.transport.TSocket;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,5 +30,9 @@ public class ConnectionManager {
             socketThreadSafe.remove();
         }
         return socket;
+    }
+
+    public void setConnectionProvider(ConnectionProvider connectionProvider) {
+        this.connectionProvider = connectionProvider;
     }
 }

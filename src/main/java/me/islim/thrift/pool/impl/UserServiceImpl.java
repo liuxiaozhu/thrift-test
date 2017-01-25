@@ -1,10 +1,9 @@
-package me.islim.thrift.demo.pool.impl;
+package me.islim.thrift.pool.impl;
 
 import com.google.common.collect.Maps;
-import me.islim.thrift.demo.pool.UserRequest;
-import me.islim.thrift.demo.pool.UserResponse;
-import me.islim.thrift.demo.pool.UserService;
-import org.apache.thrift.TException;
+import me.islim.thrift.pool.UserRequest;
+import me.islim.thrift.pool.UserResponse;
+import me.islim.thrift.pool.UserService;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
