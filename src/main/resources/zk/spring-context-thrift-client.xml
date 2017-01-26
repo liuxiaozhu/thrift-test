@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+                 "
+       default-lazy-init="false">
+
+    <!-- fixedAddress
+    <bean id="fixedAddressProvider" class="me.islim.thrift.zk.client.FixedAddressProvider">
+         <property name="service" value="me.islim.thrift.zk.EchoService" />
+         <property name="serverAddress" value="192.168.2.244:9001:1,192.168.2.244:9002:2,192.168.2.244:9003:3" />
+    </bean>
+    <bean id="echoSerivce" class="me.islim.thrift.zk.client.ThriftServiceClientProxyFactory">
+        <property name="maxActive" value="5" />
+        <property name="idleTime" value="10000" />
+        <property name="serverAddressProvider" ref="fixedAddressProvider" />
+    </bean>-->
+
+    <!-- zookeeper   -->
+    <bean id="thriftZookeeper" class="me.islim.thrift.zk.server.ZookeeperFactory"
+          destroy-method="close">
+        <property name="zkHosts"
+                  value="192.168.2.244:2181" />
+        <property name="namespace" value="me.islim.thrift.zk" />
+        <property name="connectionTimeout" value="3000" />
+        <property name="sessionTimeout" value="3000" />
+        <property name="singleton" value="true" />
+    </bean>
+    <bean id="echoSerivce" class="me.islim.thrift.zk.client.ThriftServiceClientProxyFactory" destroy-method="close">
+        <property name="maxActive" value="5" />
+        <property name="idleTime" value="1800000" />
+        <property name="serverAddressProvider">
+            <bean class="me.islim.thrift.zk.client.ThriftServerAddressProviderZookeeper">
+                <property name="service" value="me.islim.thrift.zk.EchoService" />
+                <property name="version" value="1.0.0" />
+                <property name="zkClient" ref="thriftZookeeper" />
+            </bean>
+        </property>
+    </bean>
+</beans>

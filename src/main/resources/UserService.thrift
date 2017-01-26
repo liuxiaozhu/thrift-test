@@ -1,4 +1,4 @@
-namespace java me.islim.thrift.demo.pool
+namespace java me.islim.thrift.pool
 struct UserRequest
 {
     1:string id

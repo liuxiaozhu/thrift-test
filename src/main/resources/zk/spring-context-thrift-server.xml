@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+                        "
+       default-lazy-init="false">
+
+    <!-- zookeeper -->
+    <bean id="thriftZookeeper" class="me.islim.thrift.zk.server.ZookeeperFactory"
+          destroy-method="close">
+        <property name="zkHosts"
+                  value="192.168.2.244:2181" />
+        <property name="namespace" value="me.islim.thrift.zk" />
+        <property name="connectionTimeout" value="3000" />
+        <property name="sessionTimeout" value="3000" />
+        <property name="singleton" value="true" />
+    </bean>
+    <bean id="sericeAddressRegister"
+          class="me.islim.thrift.zk.server.ThriftServerAddressRegisterZookeeper"
+          destroy-method="close">
+        <property name="zkClient" ref="thriftZookeeper" />
+    </bean>
+    <bean id="echoSerivceImpl" class="me.islim.thrift.zk.server.impl.EchoServiceImpl" />
+
+    <bean id="echoSerivce" class="me.islim.thrift.zk.server.ThriftServiceServerFactory"
+          destroy-method="close">
+        <property name="service" ref="echoSerivceImpl" />
+        <property name="port" value="9000" />
+        <property name="version" value="1.0.0" />
+        <property name="weight" value="1" />
+        <property name="thriftServerAddressRegister" ref="sericeAddressRegister" />
+    </bean>
+
+    <bean id="echoSerivce1" class="me.islim.thrift.zk.server.ThriftServiceServerFactory"
+          destroy-method="close">
+        <property name="service" ref="echoSerivceImpl" />
+        <property name="port" value="9001" />
+        <property name="version" value="1.0.0" />
+        <property name="weight" value="1" />
+        <property name="thriftServerAddressRegister" ref="sericeAddressRegister" />
+    </bean>
+
+    <bean id="echoSerivce2" class="me.islim.thrift.zk.server.ThriftServiceServerFactory"
+          destroy-method="close">
+        <property name="service" ref="echoSerivceImpl" />
+        <property name="port" value="9002" />
+        <property name="version" value="1.0.0" />
+        <property name="weight" value="1" />
+        <property name="thriftServerAddressRegister" ref="sericeAddressRegister" />
+    </bean>
+</beans>
